@@ -11,6 +11,18 @@ using MqContracts;
 using RabbitMQ.Client;
 using ServiceMeshHelper;
 using ServiceMeshHelper.Controllers;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Instrumentation.AspNetCore;
+using OpenTelemetry.Instrumentation.Http;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Extensions.Hosting;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Logs;
+using Application.Interfaces;
+using Application.Usecases;
+using Microsoft.AspNetCore.RateLimiting;
+using OpenTelemetry;
 
 namespace Configuration
 {
@@ -21,6 +33,37 @@ namespace Configuration
             var builder = WebApplication.CreateBuilder(args);
 
             ConfigureServices(builder.Services);
+            builder.Logging.AddOpenTelemetry(options =>
+            {
+                options
+                    .SetResourceBuilder(
+                        ResourceBuilder.CreateDefault()
+                            .AddService("TripComparator"));
+
+            });
+            builder.Services.AddOpenTelemetry()
+                .ConfigureResource(otelBuilder => otelBuilder
+                    .AddService(serviceName: "tripcomparator"))
+                .WithTracing(otelBuilder => otelBuilder
+                    .AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddConsoleExporter()
+                    .AddZipkinExporter(options =>
+                    {
+                        options.Endpoint = new Uri("http://host.docker.internal:9411/api/v2/spans");
+                    })
+                    .ConfigureServices(services =>
+                    {
+                        //services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("OpenTelemetrySettings:ZipkinSettings"));
+                        services.Configure<AspNetCoreTraceInstrumentationOptions>(builder.Configuration.GetSection("AspNetCoreInstrumentation"));
+                        services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("Zipkin"));
+                    }))
+                .WithMetrics(metrics => metrics
+                    .AddAspNetCoreInstrumentation()
+                    .AddConsoleExporter());
+
+            builder.Services.Configure<AspNetCoreTraceInstrumentationOptions>(builder.Configuration.GetSection("AspNetCoreInstrumentation"));
+            builder.Services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("Zipkin"));
 
             var app = builder.Build();
 

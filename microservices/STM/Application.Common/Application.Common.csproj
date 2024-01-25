@@ -14,4 +14,12 @@
     <ProjectReference Include="..\Domain.Common\Domain.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Api.ProviderBuilderExtensions" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+  </ItemGroup>
+
 </Project>

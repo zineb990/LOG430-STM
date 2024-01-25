@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj": {}
+    "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj": {}
   },
   "projects": {
-    "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj": {
+    "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\obj\\",
+        "projectPath": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\zineb\\.nuget\\packages\\",
+        "outputPath": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\zineb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,9 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\Nuget": {},
-          "C:\\Users\\david\\source\\repos\\SyncStore\\SyncStore\\bin\\Release": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,25 +55,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj": {
+    "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj",
+        "projectUniqueName": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj",
         "projectName": "RouteTimeProvider",
-        "projectPath": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\obj\\",
+        "projectPath": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\RouteTimeProvider.csproj",
+        "packagesPath": "C:\\Users\\zineb\\.nuget\\packages\\",
+        "outputPath": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\RouteTimeProvider\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\zineb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,17 +77,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\Nuget": {},
-          "C:\\Users\\david\\source\\repos\\SyncStore\\SyncStore\\bin\\Release": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\david\\Documents\\GitHub\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj"
+              "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj": {
+                "projectPath": "C:\\temporary D\\Log430\\LOG430-STM\\microservices\\RouteTimeProvider\\Application\\Application.csproj"
               }
             }
           }
@@ -124,6 +110,26 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "OpenTelemetry.Exporter.Console": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "OpenTelemetry.Exporter.Zipkin": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "OpenTelemetry.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "OpenTelemetry.Instrumentation.AspNetCore": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "OpenTelemetry.Instrumentation.Http": {
+              "target": "Package",
+              "version": "[1.7.0, )"
             },
             "RestSharp": {
               "target": "Package",
@@ -153,7 +159,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

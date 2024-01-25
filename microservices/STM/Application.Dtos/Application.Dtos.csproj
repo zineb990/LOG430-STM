@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.25.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
   </ItemGroup>
 
 </Project>

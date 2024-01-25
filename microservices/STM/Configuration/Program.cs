@@ -35,12 +35,21 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Instrumentation.AspNetCore;
+using OpenTelemetry.Instrumentation.Http;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Extensions.Hosting;
+using OpenTelemetry.Metrics;
+using OpenTelemetry;
 
 namespace Configuration;
 
 public class Program
 {
-    public static readonly bool UseInMemoryDatabase = true;
+    //datab :  ici on met false
+    public static readonly bool UseInMemoryDatabase = false;
 
     private static readonly InMemoryDatabaseRoot DatabaseRoot = new();
 
@@ -51,9 +60,11 @@ public class Program
     public static Action<IServiceCollection, IConfiguration> Infrastructure { get; set; } = InfrastructureSetup;
     public static Action<IServiceCollection> Application { get; set; } = ApplicationSetup;
     public static Action<IServiceCollection> Domain { get; set; } = DomainSetup;
+    
+    //set docker port/
 
     //this is a quick start configuration, it should use dynamic values
-    private const int DbPort = 00000;
+    private const int DbPort = 32572;
     private const string DbUsername = "postgres";
     private const string DbPassword = "secret";
     private const string DatabaseName = "STM";
@@ -84,7 +95,37 @@ public class Program
 
         // Add services to the container.
         ConfigureServices(builder.Services, builder.Configuration);
+        builder.Logging.AddOpenTelemetry(options =>
+        {
+            options
+                .SetResourceBuilder(
+                    ResourceBuilder.CreateDefault()
+                        .AddService("STM"));
 
+        });
+        builder.Services.AddOpenTelemetry()
+            .ConfigureResource(otelBuilder => otelBuilder
+                .AddService(serviceName: "stm"))
+            .WithTracing(otelBuilder => otelBuilder
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
+                .AddZipkinExporter(options =>
+                {
+                    options.Endpoint = new Uri("http://host.docker.internal:9411/api/v2/spans");
+                })
+                .ConfigureServices(services =>
+                {
+                    //services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("OpenTelemetrySettings:ZipkinSettings"));
+                    services.Configure<AspNetCoreTraceInstrumentationOptions>(builder.Configuration.GetSection("AspNetCoreInstrumentation"));
+                    services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("Zipkin"));
+                }))
+            .WithMetrics(metrics => metrics
+                .AddAspNetCoreInstrumentation()
+                .AddConsoleExporter());
+
+        builder.Services.Configure<AspNetCoreTraceInstrumentationOptions>(builder.Configuration.GetSection("AspNetCoreInstrumentation"));
+        builder.Services.Configure<ZipkinExporterOptions>(builder.Configuration.GetSection("Zipkin"));
         var app = builder.Build();
 
         app.UseSwagger();
